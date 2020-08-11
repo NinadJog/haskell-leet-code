@@ -1,5 +1,7 @@
 module ZigZag where
   
+import Control.Monad
+
 {-
 
 Problem 6
@@ -26,6 +28,9 @@ P           I           N
     Y   A       H   R
       P           I
 
+Solutions:
+The 3 solutions use list comprehension, list monad, and
+structural recursion.
 -}
 
 -------
@@ -51,7 +56,7 @@ zigZag xs n =
   let
     ys = markRows xs n  -- Form pairs of chars with their row numbers
   in
-    pickAllRows ys n  -- Pick chars from each row starting from the first
+    pickRows ys n  -- Pick chars from each row starting from the first
 
 ------
 {-
@@ -85,24 +90,43 @@ Output: "ADBEC" because A and D have level 1 whereas B and E
 have level 2 and C has level 3
 -}
 
-pickAllRows :: [(Char, Int)] -> Int -> String
-pickAllRows xs numRows = [ a | row <- [1..numRows], (a, r) <- xs, r == row]
+pickRows :: [(Char, Int)] -> Int -> String
+pickRows xs numRows = [ a | row <- [1..numRows], (a, r) <- xs, r == row]
 
 -- ===========================
 {-
-Solution #2.
+Solution #2
+
+Part 1 is the same as before but the pickAllRows function of Part 2
+is implemented with a List Monad rather than a list comprehension
+as follows.
+-}
+
+pickRowsM :: [(Char, Int)] -> Int -> String
+pickRowsM xs numRows = do
+  row     <- [1..numRows]
+  (a, r)  <- xs
+  guard (r == row)
+  return a
+
+
+-- ===========================
+{-
+Solution #3
 
 Part 1 is the same as before but Part 2 -- picking all rows
 starting from the first row -- is done without using list
 comprehensions. I implemented this before doing list comprehensions
 as I was not too familiar with list comprehensions initially.
+
+The following two functions use structural recursion.
 -}
 
-pickAllRows' :: [(Char, Int)] -> Int -> Int -> String
-pickAllRows' [] _ _ = ""
-pickAllRows' xs n i
+pickRows' :: [(Char, Int)] -> Int -> Int -> String
+pickRows' [] _ _ = ""
+pickRows' xs n i
   | i == (n + 1)  = ""
-  | otherwise     = (pickRow xs i) ++ pickAllRows' xs n (i + 1)
+  | otherwise     = (pickRow xs i) ++ pickRows' xs n (i + 1)
 
 ------
 {- 
@@ -116,3 +140,16 @@ pickRow [] _               = ""
 pickRow ((ch, r):xs) row
   | r == row  = ch : pickRow xs row
   | otherwise = pickRow xs row
+  
+-- ===========================
+{-
+Solution #4 (Not implemented)
+
+Another solution would be to use a formula to compute the row
+number of each character in the input string based on its
+position in the string.
+
+The second part (picking rows starting from the first row)
+will be the same as above: either use list comprehensions or
+list monads or structural recursion.
+-}
