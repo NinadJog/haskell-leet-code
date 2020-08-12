@@ -1,9 +1,9 @@
 # haskell-leet-code
-Here are the Haskell solutions of some of the problems appearing on the [Leet Code](https://leetcode.com/problemset/all/) website. These are by no means the best solutions; your own solutions might well be better, shorter and faster.
+Here are the Haskell solutions to some of the problems appearing on the [Leet Code](https://leetcode.com/problemset/all/) website. These solutions are by no means the best ones; your own solutions might well be better, shorter and faster.
 
-I have written multiple solutions for some of the problems, either by changing the algorithms or changing the implementations of the supporting functions.
+I have shown multiple solutions for some of the problems, either by changing the algorithms or changing the implementations of the supporting functions.
 
-For example, a function that uses list comprehensions can also be implemented using list monads or the map-filter-reduce functions or structural recursion. For other problems I have hinted at what strategies other solutions could use but have stopped short of implementing them.
+For example, a function that uses list comprehensions can also be implemented using list monads or the map-filter-reduce functions or structural recursion. For other problems I have hinted at the strategies other solutions could use but have stopped short of implementing them (because I don't yet know how to!)
 
 | Leet # | Leet Code Link | Haskell Solution |
 |:---:|---|---|
