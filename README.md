@@ -1,5 +1,5 @@
 # haskell-leet-code
-Here are solutions in Haskell some of the problems appearing on the [Leet Code](https://leetcode.com/problemset/all/) website. These are by no means the best solutions; your own solutions might well be better, shorter and faster.
+Here are the Haskell solutions of some of the problems appearing on the [Leet Code](https://leetcode.com/problemset/all/) website. These are by no means the best solutions; your own solutions might well be better, shorter and faster.
 
 I have written multiple solutions for some of the problems, either by changing the algorithms or changing the implementations of the supporting functions.
 
